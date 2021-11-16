@@ -1,0 +1,35 @@
+{
+  "name": "advanced-web-programming-api",
+  "version": "1.0.0",
+  "description": "advanced web programming final project api",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "lint": "eslint \"./**/*.js\" --quiet",
+    "lintFull": "eslint \"./**/*.js\"",
+    "lintFix": "eslint --fix './**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyenhnghia/tdtubook-apis.git"
+  },
+  "author": "nguyenhnghia, iamphduc, andydam452",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nguyenhnghia/tdtubook-apis.git/issues"
+  },
+  "homepage": "https://github.com/nguyenhnghia/tdtubook-apis.git#readme",
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "^19.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13"
+  }
+}
