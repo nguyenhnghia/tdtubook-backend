@@ -6,7 +6,7 @@ Advanced web programming final project back-end
 - Nguyen Huu Nghia
 
 # file structure
-- 📂 __tdtubook-apis__ `backend part`
+- 📂 __tdtubook-apis__
   - 📂 __src__
     - 📂 __config__
     - 📂 __controllers__
