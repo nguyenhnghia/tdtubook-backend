@@ -1,0 +1,15 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "no-console": "off",
+    "linebreak-style": "off",
+    "quote-props": ["error", "consistent"],
+    "quotes": ["error", "double"],
+    "no-unused-vars": "error",
+    "class-methods-use-this": "off"
+  }
+}
