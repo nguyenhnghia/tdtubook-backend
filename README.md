@@ -10,8 +10,11 @@ Advanced web programming final project back-end
   - 📂 __src__
     - 📂 __config__
     - 📂 __controllers__
+    - 📂 __middlewares__ 
     - 📂 __models__ 
     - 📂 __routes__
+    - 📂 __services__
+    - 📂 __utils__
     - 📄 [index.js](src/index.js)
   - 📄 [.eslintignore](.eslintignore)
   - 📄 [.eslintrc.json](.eslintrc.json)
