@@ -28,5 +28,5 @@ npm install
 ```
 2. wait until all packages install successfully then start server by command 
 ```bash
-npm start
+npm run dev
 ```
