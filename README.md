@@ -22,7 +22,7 @@ Advanced web programming final project back-end
   - 📄 [.prettierrc.json](.prettierrc)
 
 # usage
-1. install necessary packages by comand 
+1. install necessary packages by command 
 ```bash
 npm install
 ```
