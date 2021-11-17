@@ -15,7 +15,7 @@ Advanced web programming final project back-end
     - 📂 __routes__
     - 📂 __services__
     - 📂 __utils__
-    - 📄 [index.js](src/index.js)
+    - 📄 [app.js](src/app.js)
   - 📄 [.eslintignore](.eslintignore)
   - 📄 [.eslintrc.json](.eslintrc.json)
   - 📄 [.prettierignore](.prettierignore)
