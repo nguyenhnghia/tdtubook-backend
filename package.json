@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nguyenhnghia/tdtubook-apis.git"
+    "url": "git+https://github.com/nguyenhnghia/tdtubook-backend.git"
   },
   "author": "nguyenhnghia, iamphduc, andydam452",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nguyenhnghia/tdtubook-apis.git/issues"
+    "url": "https://github.com/nguyenhnghia/tdtubook-backend.git/issues"
   },
-  "homepage": "https://github.com/nguyenhnghia/tdtubook-apis.git#readme",
+  "homepage": "https://github.com/nguyenhnghia/tdtubook-backend.git#readme",
   "devDependencies": {
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.0",
