@@ -1,4 +1,4 @@
-# tdtubook-apis
+# tdtubook-backend
 Advanced web programming final project back-end
 # contributor
 - Dam Duc Tai
@@ -15,7 +15,7 @@ Advanced web programming final project back-end
     - 📂 __routes__
     - 📂 __services__
     - 📂 __utils__
-    - 📄 [index.js](src/index.js)
+    - 📄 [app.js](src/app.js)
   - 📄 [.eslintignore](.eslintignore)
   - 📄 [.eslintrc.json](.eslintrc.json)
   - 📄 [.prettierignore](.prettierignore)
@@ -28,5 +28,5 @@ npm install
 ```
 2. wait until all packages install successfully then start server by command 
 ```bash
-npm start
+npm run dev
 ```
