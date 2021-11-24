@@ -1,4 +1,4 @@
-# tdtubook-apis
+# tdtubook-backend
 Advanced web programming final project back-end
 # contributor
 - Dam Duc Tai
