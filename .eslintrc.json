@@ -13,6 +13,8 @@
     "no-console": "warn",
     "linebreak-style": "off",
     "no-unused-vars": "warn",
-    "quote-props": ["error", "consistent"]
+    "quote-props": ["error", "consistent"],
+    "func-names": "off",
+    "no-underscore-dangle": "off"
   }
 }

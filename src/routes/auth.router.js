@@ -3,12 +3,9 @@ const express = require("express");
 const router = express.Router();
 
 const authController = require("../controllers/auth.controller");
-
 const asyncHandler = require("../utils/asyncHandler");
 
-// @route POST /auth
-// @desc show hello world
-// @access public
-router.route("/").get(asyncHandler(authController.hello));
+router.route("/login").post(asyncHandler(authController.loginWithUsernamePassword));
+router.route("/register").post(asyncHandler(authController.register));
 
 module.exports = router;

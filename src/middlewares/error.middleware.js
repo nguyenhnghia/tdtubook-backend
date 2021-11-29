@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
+
 const logger = require("../config/logger");
 
-// eslint-disable-next-line no-unused-vars
 const catchError = (err, req, res, next) => {
   logger.error(err);
-  res.status(500).json({ success: false, message: err.message });
+
+  res.status(500).json({ status: "error", message: "Internal Server Error" });
 };
+
 module.exports = catchError;
