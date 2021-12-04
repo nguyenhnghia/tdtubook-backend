@@ -2,13 +2,14 @@ const express = require("express");
 
 const userService = require("./user.service");
 const authMiddleware = require("../../middlewares/auth.middleware");
+const permit = require("../../middlewares/role.middleware");
 const asyncHandler = require("../../utils/asyncHandler");
 const pick = require("../../utils/pick");
 
 const userRouter = express.Router();
 
 // Top level middlewares
-userRouter.use(authMiddleware);
+userRouter.use(authMiddleware, permit("admin"));
 
 // [GET] /api/users/:userId
 userRouter.get(
