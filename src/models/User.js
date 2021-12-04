@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const ApiError = require("../utils/ApiError");
+
 const { paginate, toJSON } = require("./plugins");
 
 const userSchema = mongoose.Schema(
@@ -16,6 +18,10 @@ const userSchema = mongoose.Schema(
       unique: true,
     },
     password: {
+      type: String,
+      required: true,
+    },
+    email: {
       type: String,
       required: true,
     },
@@ -56,13 +62,13 @@ userSchema.statics.findByCredentials = async function (username, password) {
   // Check if username exists
   const user = await this.findOne({ username });
   if (!user) {
-    throw new Error("Invalid username");
+    throw new ApiError(401, "Invalid username");
   }
 
   // Verify password
   const isPasswordMatch = await bcrypt.compare(password, user.password);
   if (!isPasswordMatch) {
-    throw new Error("Invalid password");
+    throw new ApiError(401, "Invalid password");
   }
 
   return user;
