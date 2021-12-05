@@ -23,7 +23,9 @@ const createUser = async (createBody) => {
 };
 
 const updateUser = async (userId, updateBody) => {
-  const user = await User.findByIdAndUpdate(userId, updateBody);
+  const user = await User.findByIdAndUpdate(userId, updateBody, {
+    new: true,
+  });
   return user;
 };
 
