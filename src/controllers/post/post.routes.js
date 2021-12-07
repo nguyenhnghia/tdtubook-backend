@@ -27,8 +27,8 @@ postRouter.get(
 postRouter.get(
   "/",
   asyncHandler(async (req, res) => {
-    const filter = pick(req.body, ["content"]);
-    const options = pick(req.body, ["sortBy", "limit", "page"]);
+    const filter = pick(req.query, ["content"]);
+    const options = pick(req.query, ["sortBy", "limit", "page"]);
 
     const { results, ...rest } = await postService.queryPosts(filter, options);
 

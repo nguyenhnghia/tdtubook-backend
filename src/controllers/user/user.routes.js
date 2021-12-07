@@ -27,8 +27,8 @@ userRouter.get(
 userRouter.get(
   "/",
   asyncHandler(async (req, res) => {
-    const filter = pick(req.body, ["name", "username", "email"]);
-    const options = pick(req.body, ["sortBy", "limit", "page"]);
+    const filter = pick(req.query, ["name", "username", "email"]);
+    const options = pick(req.query, ["sortBy", "limit", "page"]);
 
     const { results, ...rest } = await userService.queryUsers(filter, options);
 
