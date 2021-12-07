@@ -9,7 +9,7 @@ const pick = require("../../utils/pick");
 const postRouter = express.Router();
 
 // Top level middlewares
-postRouter.use(authMiddleware, permit("admin", "faculty", "student", "user"));
+postRouter.use(authMiddleware, permit("all"));
 
 // [GET] /api/posts/:postId
 postRouter.get(

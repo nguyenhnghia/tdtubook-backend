@@ -5,7 +5,10 @@ const permit = (...permittedRoles) => {
   return (req, res, next) => {
     const { user } = req;
 
-    if (user && permittedRoles.includes(user.role)) {
+    const isAllPermitted = permittedRoles.includes("all");
+    const isUserPermitted = permittedRoles.includes(user.role);
+
+    if (user && (isAllPermitted || isUserPermitted)) {
       next(); // User role is allowed, so continue on the next middleware
     } else {
       res.status(403).json({ status: "error", message: "Forbidden" });
