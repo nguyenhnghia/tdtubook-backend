@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const User = require("./User");
-const { paginate, toJSON } = require("./plugins");
+const { paginate } = require("./plugins");
 
 const commentSchema = mongoose.Schema(
   {
@@ -40,7 +40,6 @@ const postSchema = mongoose.Schema(
 
 // Plugins
 postSchema.plugin(paginate);
-postSchema.plugin(toJSON);
 
 const Post = mongoose.model("Post", postSchema);
 

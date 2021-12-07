@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const ApiError = require("../utils/ApiError");
 
-const { paginate, toJSON } = require("./plugins");
+const { paginate } = require("./plugins");
 
 const userSchema = mongoose.Schema(
   {
@@ -40,7 +40,6 @@ const userSchema = mongoose.Schema(
 
 // Plugins
 userSchema.plugin(paginate);
-userSchema.plugin(toJSON);
 
 userSchema.pre("save", async function (next) {
   const user = this;
