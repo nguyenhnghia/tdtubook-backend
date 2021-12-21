@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
+const paginate = require("mongoose-paginate-v2");
 
 const User = require("./User");
-const { paginate } = require("./plugins");
 
 const commentSchema = mongoose.Schema(
   {
@@ -26,6 +26,11 @@ const postSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    user: {
+      type: String,
+      required: true,
+      ref: "User",
+    },
     media: {
       type: String,
     },
@@ -34,7 +39,7 @@ const postSchema = mongoose.Schema(
     },
   },
   {
-    timestamp: true,
+    timestamps: true,
   }
 );
 

@@ -27,12 +27,12 @@ postRouter.get(
 postRouter.get(
   "/",
   asyncHandler(async (req, res) => {
-    const filter = pick(req.query, ["content"]);
-    const options = pick(req.query, ["sortBy", "limit", "page"]);
+    const query = pick(req.query, ["content"]);
+    const options = pick(req.query, ["sort", "limit", "page"]);
 
-    const { results, ...rest } = await postService.queryPosts(filter, options);
+    const { docs: posts, ...pageInfo } = await postService.queryPosts(query, options);
 
-    res.status(200).json({ status: "success", posts: results, ...rest });
+    res.status(200).json({ status: "success", posts, ...pageInfo });
   })
 );
 
@@ -40,7 +40,8 @@ postRouter.get(
 postRouter.post(
   "/",
   asyncHandler(async (req, res) => {
-    const createBody = pick(req.body, ["content"]);
+    const data = pick(req.body, ["content"]);
+    const createBody = { ...data, user: req.user._id };
 
     const post = await postService.createPost(createBody);
 

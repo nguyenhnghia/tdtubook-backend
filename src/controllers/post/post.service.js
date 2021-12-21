@@ -1,17 +1,22 @@
 const Post = require("../../models/Post");
 const ApiError = require("../../utils/ApiError");
 
-const getPostById = async (postId) => {
-  const post = await Post.findById(postId);
-  if (!post) {
-    throw new ApiError(404, "Post not found");
-  }
+const populateOptions = {
+  path: "user",
+  select: "name",
+};
 
+const getPostById = async (postId) => {
+  const post = await Post.findById(postId).populate(populateOptions);
+  if (!post) throw new ApiError(404, "Post not found");
   return post;
 };
 
-const queryPosts = async (filter, options) => {
-  const posts = await Post.paginate(filter, options);
+const queryPosts = async (query, options) => {
+  const paginateOptions = options;
+  paginateOptions.populate = populateOptions;
+
+  const posts = await Post.paginate(query, paginateOptions);
   return posts;
 };
 
@@ -24,7 +29,7 @@ const createPost = async (createBody) => {
 const updatePost = async (postId, updateBody) => {
   const post = await Post.findByIdAndUpdate(postId, updateBody, {
     new: true,
-  });
+  }).populate(populateOptions);
   return post;
 };
 
