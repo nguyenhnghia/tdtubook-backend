@@ -10,8 +10,8 @@ const getUserById = async (userId) => {
   return user;
 };
 
-const queryUsers = async (filter, options) => {
-  const users = await User.paginate(filter, options);
+const queryUsers = async (query, options) => {
+  const users = await User.paginate(query, options);
   return users;
 };
 

@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const paginate = require("mongoose-paginate-v2");
 
 const ApiError = require("../utils/ApiError");
-
-const { paginate } = require("./plugins");
 
 const userSchema = mongoose.Schema(
   {

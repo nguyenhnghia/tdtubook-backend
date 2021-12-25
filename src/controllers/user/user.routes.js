@@ -27,12 +27,12 @@ userRouter.get(
 userRouter.get(
   "/",
   asyncHandler(async (req, res) => {
-    const filter = pick(req.query, ["name", "username", "email"]);
-    const options = pick(req.query, ["sortBy", "limit", "page"]);
+    const query = pick(req.query, ["name", "username", "email"]);
+    const options = pick(req.query, ["sort", "limit", "page"]);
 
-    const { results, ...rest } = await userService.queryUsers(filter, options);
+    const { docs: users, ...pageInfo } = await userService.queryUsers(query, options);
 
-    res.status(200).json({ status: "success", users: results, ...rest });
+    res.status(200).json({ status: "success", users, ...pageInfo });
   })
 );
 
