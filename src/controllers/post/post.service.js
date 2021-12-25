@@ -1,10 +1,19 @@
 const Post = require("../../models/Post");
 const ApiError = require("../../utils/ApiError");
 
-const populateOptions = {
-  path: "user",
-  select: "name",
-};
+const populateOptions = [
+  {
+    path: "user",
+    select: "name",
+  },
+  {
+    path: "comments",
+    populate: {
+      path: "user",
+      select: "name",
+    },
+  },
+];
 
 const getPostById = async (postId) => {
   const post = await Post.findById(postId).populate(populateOptions);
