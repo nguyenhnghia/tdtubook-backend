@@ -1,6 +1,7 @@
 const express = require("express");
 
 const authService = require("./auth.service");
+const authMiddleware = require("../../middlewares/auth.middleware");
 const asyncHandler = require("../../utils/asyncHandler");
 const pick = require("../../utils/pick");
 
@@ -19,6 +20,19 @@ authRouter.post(
     }
 
     res.status(200).json({ status: "success", token });
+  })
+);
+
+authRouter.get(
+  "/load",
+  authMiddleware,
+  asyncHandler(async (req, res) => {
+    const user = pick(req.user.toObject(), ["_id", "name", "avatar", "email", "role"]);
+
+    res.status(200).json({
+      status: "success",
+      user,
+    });
   })
 );
 
