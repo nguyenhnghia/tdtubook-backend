@@ -7,7 +7,7 @@ const { isValidId } = require("../../utils/checkId");
 const getCommentById = async (commentId) => {
   const comment = await Comment.findById(commentId);
   if (!comment) {
-    throw new ApiError(404, "Comment not found");
+    throw new ApiError(400, "Comment not found");
   }
 
   return comment;
@@ -54,11 +54,11 @@ const updateComment = async (commentId, updateBody) => {
 
 const deleteComment = async (commentId, postId) => {
   if (!isValidId(postId)) {
-    throw new ApiError("Post not found");
+    throw new ApiError(400, "Post not found");
   }
 
   if (!isValidId(commentId)) {
-    throw new ApiError("Comment not found");
+    throw new ApiError(400, "Comment not found");
   }
 
   await Promise.all([

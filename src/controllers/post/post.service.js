@@ -17,7 +17,7 @@ const populateOptions = [
 
 const getPostById = async (postId) => {
   const post = await Post.findById(postId).populate(populateOptions);
-  if (!post) throw new ApiError(404, "Post not found");
+  if (!post) throw new ApiError(400, "Post not found");
   return post;
 };
 
