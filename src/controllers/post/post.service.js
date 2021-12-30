@@ -1,4 +1,5 @@
 const Post = require("../../models/Post");
+const Comment = require("../../models/Comment");
 const ApiError = require("../../utils/ApiError");
 const pick = require("../../utils/pick");
 
@@ -25,6 +26,7 @@ const getPostById = async (postId) => {
 const queryPosts = async (query, options) => {
   const paginateOptions = options;
   paginateOptions.populate = populateOptions;
+  paginateOptions.sort = "-createdAt";
 
   const posts = await Post.paginate(query, paginateOptions);
   return posts;
@@ -49,7 +51,12 @@ const updatePost = async (postId, updateBody) => {
 };
 
 const deletePost = async (postId) => {
-  await Post.findByIdAndRemove(postId);
+  await Promise.all([
+    Post.findByIdAndRemove(postId),
+    Comment.deleteMany({
+      post: postId,
+    }),
+  ]);
   return null;
 };
 
