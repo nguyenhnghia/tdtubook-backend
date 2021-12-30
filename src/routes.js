@@ -11,6 +11,14 @@ const route = (app) => {
   app.use("/api/posts", postRouter);
   app.use("/api/users", userRouter);
   app.use(catchError);
+
+  // 404 Not found
+  app.use((req, res) => {
+    res.status(404).json({
+      status: "error",
+      message: "Resources not found",
+    });
+  });
 };
 
 module.exports = route;
