@@ -40,7 +40,7 @@ const createComment = async (createBody, postId, user) => {
 
   // Modify comment before returning
   const retComment = newComment.toObject();
-  retComment.user = pick(user.toObject(), ["name"]);
+  retComment.user = pick(user.toObject(), ["name", "avatar"]);
 
   return retComment;
 };
