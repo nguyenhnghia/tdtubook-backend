@@ -13,12 +13,10 @@ const userSchema = mongoose.Schema(
     },
     username: {
       type: String,
-      required: true,
       unique: true,
     },
     password: {
       type: String,
-      required: true,
     },
     avatar: {
       type: String,
@@ -28,6 +26,9 @@ const userSchema = mongoose.Schema(
     email: {
       type: String,
       required: true,
+    },
+    studentId: {
+      type: String,
     },
     role: {
       type: String,

@@ -13,26 +13,36 @@ authRouter.post(
   asyncHandler(async (req, res) => {
     const loginData = pick(req.body, ["username", "password"]);
 
-    const token = await authService.loginWithUsernamePassword(loginData);
-    if (!token) {
+    const authToken = await authService.loginWithUsernamePassword(loginData);
+    if (!authToken) {
       res.status(401).json({ status: "error", message: "Login failed" });
       return;
     }
 
-    res.status(200).json({ status: "success", token });
+    res.status(200).json({ status: "success", authToken });
   })
 );
 
+// [POST] /api/auth/google-login
+authRouter.post(
+  "/google-login",
+  asyncHandler(async (req, res) => {
+    const { tokenId } = req.body;
+
+    const authToken = await authService.loginWithGoogle(tokenId);
+
+    res.status(200).json({ status: "success", authToken });
+  })
+);
+
+// [GET] /api/auth/load
 authRouter.get(
   "/load",
   authMiddleware,
   asyncHandler(async (req, res) => {
     const user = pick(req.user.toObject(), ["_id", "name", "avatar", "email", "role"]);
 
-    res.status(200).json({
-      status: "success",
-      user,
-    });
+    res.status(200).json({ status: "success", user });
   })
 );
 
