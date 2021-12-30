@@ -18,8 +18,7 @@ const queryUsers = async (query, options) => {
 const createUser = async (createBody) => {
   const user = new User(createBody);
   await user.save();
-  const token = await user.generateAuthToken();
-  return { user, token };
+  return user;
 };
 
 const updateUser = async (userId, updateBody) => {

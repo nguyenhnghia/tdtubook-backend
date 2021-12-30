@@ -42,9 +42,9 @@ userRouter.post(
   asyncHandler(async (req, res) => {
     const createBody = pick(req.body, ["name", "username", "password", "email", "role"]);
 
-    const { user, token } = await userService.createUser(createBody);
+    const user = await userService.createUser(createBody);
 
-    res.status(200).json({ status: "success", user, token });
+    res.status(200).json({ status: "success", user });
   })
 );
 
