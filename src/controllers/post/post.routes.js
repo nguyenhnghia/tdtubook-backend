@@ -43,7 +43,7 @@ postRouter.post(
     const data = pick(req.body, ["content"]);
     const createBody = { ...data, user: req.user._id };
 
-    const post = await postService.createPost(createBody);
+    const post = await postService.createPost(createBody, req.user);
 
     res.status(200).json({ status: "success", post });
   })

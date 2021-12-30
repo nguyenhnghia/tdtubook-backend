@@ -1,16 +1,17 @@
 const Post = require("../../models/Post");
 const ApiError = require("../../utils/ApiError");
+const pick = require("../../utils/pick");
 
 const populateOptions = [
   {
     path: "user",
-    select: "name",
+    select: "name avatar",
   },
   {
     path: "comments",
     populate: {
       path: "user",
-      select: "name",
+      select: "name avatar",
     },
   },
 ];
@@ -29,10 +30,15 @@ const queryPosts = async (query, options) => {
   return posts;
 };
 
-const createPost = async (createBody) => {
-  const post = new Post(createBody);
-  await post.save();
-  return post;
+const createPost = async (createBody, user) => {
+  const newPost = new Post(createBody);
+  await newPost.save();
+
+  // Modify post before returning
+  const retPost = newPost.toObject();
+  retPost.user = pick(user.toObject(), ["name", "avatar"]);
+
+  return retPost;
 };
 
 const updatePost = async (postId, updateBody) => {
