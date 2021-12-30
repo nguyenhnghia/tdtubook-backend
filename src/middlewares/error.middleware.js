@@ -8,7 +8,7 @@ const catchError = (err, req, res, next) => {
 
   // Default is Internal Server Error
   let statusCode = 500;
-  let message = "Internal Sever Error";
+  let message = "Internal Server Error";
 
   // Check if error is customized
   if (err instanceof ApiError) {
