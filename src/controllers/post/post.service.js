@@ -33,7 +33,10 @@ const queryPosts = async (query, options) => {
 };
 
 const createPost = async (createBody, user) => {
-  const newPost = new Post(createBody);
+  const newPost = new Post({
+    ...createBody,
+    user: user._id,
+  });
   await newPost.save();
 
   // Modify post before returning

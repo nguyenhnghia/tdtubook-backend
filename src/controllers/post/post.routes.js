@@ -7,6 +7,7 @@ const asyncHandler = require("../../utils/asyncHandler");
 const pick = require("../../utils/pick");
 
 const postRouter = express.Router();
+const postFields = ["content", "media"];
 
 // Top level middlewares
 postRouter.use(authMiddleware, permit("all"));
@@ -27,7 +28,7 @@ postRouter.get(
 postRouter.get(
   "/",
   asyncHandler(async (req, res) => {
-    const query = pick(req.query, ["content"]);
+    const query = pick(req.query, postFields);
     const options = pick(req.query, ["sort", "limit", "page"]);
 
     const { docs: posts, ...pageInfo } = await postService.queryPosts(query, options);
@@ -40,8 +41,7 @@ postRouter.get(
 postRouter.post(
   "/",
   asyncHandler(async (req, res) => {
-    const data = pick(req.body, ["content"]);
-    const createBody = { ...data, user: req.user._id };
+    const createBody = pick(req.body, postFields);
 
     const post = await postService.createPost(createBody, req.user);
 
@@ -54,7 +54,7 @@ postRouter.put(
   "/:postId",
   asyncHandler(async (req, res) => {
     const { postId } = req.params;
-    const updateBody = pick(req.body, ["content"]);
+    const updateBody = pick(req.body, postFields);
 
     const post = await postService.updatePost(postId, updateBody);
 
