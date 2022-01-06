@@ -7,7 +7,7 @@ const asyncHandler = require("../../utils/asyncHandler");
 const pick = require("../../utils/pick");
 
 const notificationRouter = express.Router();
-const notificationFields = ["title", "content", "department"];
+const notificationFields = ["title", "content", "department", "category"];
 
 // Top level middlewares
 notificationRouter.use(authMiddleware, permit("admin", "department"));

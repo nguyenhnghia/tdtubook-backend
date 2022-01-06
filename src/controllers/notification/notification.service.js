@@ -1,11 +1,13 @@
 const Notification = require("../../models/Notification");
 const ApiError = require("../../utils/ApiError");
-const pick = require("../../utils/pick");
 
 const populateOptions = [
   {
     path: "department",
     select: "name avatar",
+  },
+  {
+    path: "category",
   },
 ];
 
@@ -24,18 +26,23 @@ const queryNotifications = async (query, options) => {
   return notifications;
 };
 
+const checkCategoryPermission = (notiCategory, userCategories) => {
+  const isAllowed = userCategories.some((category) => category.toString() === notiCategory);
+  return isAllowed;
+};
+
 const createNotification = async (createBody, user) => {
-  const newNotification = new Notification({
+  if (!checkCategoryPermission(createBody.category, user.categories)) {
+    throw new ApiError(400, "Department is not responsible in this category");
+  }
+
+  const notification = new Notification({
     ...createBody,
     department: user._id,
   });
-  await newNotification.save();
+  const newNotification = await notification.save().then((doc) => doc.populate(populateOptions));
 
-  // Modify notification before returning
-  const retNotification = newNotification.toObject();
-  retNotification.department = pick(user.toObject(), ["name", "avatar"]);
-
-  return retNotification;
+  return newNotification;
 };
 
 const updateNotification = async (notificationId, updateBody) => {
