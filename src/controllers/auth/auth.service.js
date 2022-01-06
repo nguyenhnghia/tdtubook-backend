@@ -1,4 +1,5 @@
 const { OAuth2Client } = require("google-auth-library");
+const bcrypt = require("bcryptjs");
 
 const User = require("../../models/User");
 const ApiError = require("../../utils/ApiError");
@@ -45,7 +46,27 @@ const loginWithGoogle = async (tokenId) => {
   return authToken;
 };
 
+const changePassword = async (userId, oldPassword, newPassword) => {
+  if (oldPassword === newPassword) {
+    throw new ApiError(400, "New password must be different from old password");
+  }
+
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new ApiError(401, "No user found");
+  }
+
+  const isPasswordMatch = await bcrypt.compare(oldPassword, user.password);
+  if (!isPasswordMatch) {
+    throw new ApiError(400, "Old password is not correct");
+  }
+
+  Object.assign(user, { password: newPassword, token: "" });
+  await user.save();
+};
+
 module.exports = {
   loginWithUsernamePassword,
   loginWithGoogle,
+  changePassword,
 };

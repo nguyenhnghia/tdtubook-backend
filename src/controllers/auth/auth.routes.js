@@ -46,4 +46,18 @@ authRouter.get(
   })
 );
 
+// [POST] /api/auth/change-password
+authRouter.post(
+  "/change-password",
+  authMiddleware,
+  asyncHandler(async (req, res) => {
+    const { oldPassword, newPassword } = req.body;
+    const userId = req.user._id;
+
+    await authService.changePassword(userId, oldPassword, newPassword);
+
+    res.status(200).json({ status: "success", user: null });
+  })
+);
+
 module.exports = authRouter;
