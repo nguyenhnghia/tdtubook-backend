@@ -27,7 +27,7 @@ userRouter.get(
 userRouter.get(
   "/",
   asyncHandler(async (req, res) => {
-    const query = pick(req.query, ["name", "username", "email"]);
+    const query = pick(req.query, ["name", "role", "category"]);
     const options = pick(req.query, ["sort", "limit", "page"]);
 
     const { docs: users, ...pageInfo } = await userService.queryUsers(query, options);
@@ -40,7 +40,7 @@ userRouter.get(
 userRouter.post(
   "/",
   asyncHandler(async (req, res) => {
-    const createBody = pick(req.body, ["name", "username", "password", "email", "role"]);
+    const createBody = pick(req.body, ["name", "username", "password", "role", "category"]);
 
     const user = await userService.createUser(createBody);
 
@@ -53,7 +53,7 @@ userRouter.put(
   "/:userId",
   asyncHandler(async (req, res) => {
     const { userId } = req.params;
-    const updateBody = pick(req.body, ["name", "username", "email", "role"]);
+    const updateBody = pick(req.body, ["name", "username", "role", "category"]);
 
     const user = await userService.updateUser(userId, updateBody);
 

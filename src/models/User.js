@@ -18,6 +18,12 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
     },
+    category: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category",
+      },
+    ],
     avatar: {
       type: String,
       default:
@@ -25,7 +31,6 @@ const userSchema = mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
     },
     studentId: {
       type: String,
