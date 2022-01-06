@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
     },
-    category: [
+    categories: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Category",
