@@ -9,11 +9,12 @@ const pick = require("../../utils/pick");
 const userRouter = express.Router();
 
 // Top level middlewares
-userRouter.use(authMiddleware, permit("admin"));
+userRouter.use(authMiddleware);
 
 // [GET] /api/users/:userId
 userRouter.get(
   "/:userId",
+  permit("admin"),
   asyncHandler(async (req, res) => {
     const { userId } = req.params;
 
@@ -26,6 +27,7 @@ userRouter.get(
 // [GET] /api/users
 userRouter.get(
   "/",
+  permit("admin"),
   asyncHandler(async (req, res) => {
     const query = pick(req.query, ["name", "role", "categories"]);
     const options = pick(req.query, ["sort", "limit", "page"]);
@@ -39,6 +41,7 @@ userRouter.get(
 // [POST] /api/users
 userRouter.post(
   "/",
+  permit("admin"),
   asyncHandler(async (req, res) => {
     const createBody = pick(req.body, ["name", "username", "password", "role", "categories"]);
 
@@ -51,6 +54,7 @@ userRouter.post(
 // [PUT] /api/users/:userId
 userRouter.put(
   "/:userId",
+  permit("admin", "owner"),
   asyncHandler(async (req, res) => {
     const { userId } = req.params;
     const updateBody = pick(req.body, ["name", "username", "role", "categories"]);
@@ -64,6 +68,7 @@ userRouter.put(
 // [DELETE] /api/users/:userId
 userRouter.delete(
   "/:userId",
+  permit("admin"),
   asyncHandler(async (req, res) => {
     const { userId } = req.params;
 
