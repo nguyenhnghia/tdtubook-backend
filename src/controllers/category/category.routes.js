@@ -30,6 +30,11 @@ categoryRouter.get(
     const query = pick(req.query, ["name", "tag"]);
     const options = pick(req.query, ["sort", "limit", "page"]);
 
+    const { pagination } = req.query;
+    if (pagination && pagination === "false") {
+      options.pagination = false;
+    }
+
     const { docs: categories, ...pageInfo } = await categoryService.queryCategories(query, options);
 
     res.status(200).json({ status: "success", categories, ...pageInfo });
