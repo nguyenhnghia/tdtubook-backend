@@ -2,10 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const http = require("http");
 
-const route = require("./routes");
 const db = require("./config/db");
 const logger = require("./config/logger");
+const route = require("./routes");
+const socketIO = require("./socket.io");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,8 +24,12 @@ db.connect();
 // Routing
 route(app);
 
-app.listen(PORT, () => {
+// Use http to create server for socket
+const server = http.createServer(app);
+
+// Init socket IO
+socketIO.init(server);
+
+server.listen(PORT, () => {
   logger.info(`Server is running at: http://localhost:${PORT}`);
 });
-
-module.exports = app;
