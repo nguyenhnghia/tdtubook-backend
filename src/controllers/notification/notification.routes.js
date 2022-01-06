@@ -28,7 +28,7 @@ notificationRouter.get(
 notificationRouter.get(
   "/",
   asyncHandler(async (req, res) => {
-    const query = pick(req.query, notificationFields);
+    const query = pick(req.query, ["title", "content", "category"]);
     const options = pick(req.query, ["sort", "limit", "page"]);
 
     const { docs: notifications, ...pageInfo } = await notificationService.queryNotifications(

@@ -1,5 +1,7 @@
+const categoryService = require("../category/category.service");
 const Notification = require("../../models/Notification");
 const ApiError = require("../../utils/ApiError");
+const { isValidId } = require("../../utils/checkId");
 
 const populateOptions = [
   {
@@ -22,7 +24,15 @@ const queryNotifications = async (query, options) => {
   paginateOptions.populate = populateOptions;
   paginateOptions.sort = "-createdAt";
 
-  const notifications = await Notification.paginate(query, paginateOptions);
+  const paginateQuery = query;
+  // Allow using category name for query
+  const { category: categoryName } = query;
+  if (categoryName && !isValidId(categoryName)) {
+    const category = await categoryService.getCategoryFromName(categoryName);
+    paginateQuery.category = category._id;
+  }
+
+  const notifications = await Notification.paginate(paginateQuery, paginateOptions);
   return notifications;
 };
 

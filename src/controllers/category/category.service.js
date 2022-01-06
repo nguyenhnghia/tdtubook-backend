@@ -30,10 +30,16 @@ const deleteCategory = async (categoryId) => {
   return null;
 };
 
+const getCategoryFromName = async (categoryName) => {
+  const category = await Category.findOne({ name: categoryName });
+  return category;
+};
+
 module.exports = {
   getCategoryById,
   queryCategories,
   createCategory,
   updateCategory,
   deleteCategory,
+  getCategoryFromName,
 };
