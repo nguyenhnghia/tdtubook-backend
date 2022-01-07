@@ -49,7 +49,7 @@ const createLike = async (postId, user) => {
 
   // Modify like before returning
   const retLike = newLike.toObject();
-  retLike.user = pick(user.toObject(), ["name", "avatar"]);
+  retLike.user = pick(user.toObject(), ["_id", "name", "avatar"]);
 
   return retLike;
 };
