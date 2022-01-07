@@ -7,7 +7,7 @@ const asyncHandler = require("../../utils/asyncHandler");
 const pick = require("../../utils/pick");
 
 const postRouter = express.Router();
-const postFields = ["content", "media"];
+const postFields = ["user", "content", "media"];
 
 // Top level middlewares
 postRouter.use(authMiddleware, permit("all"));
