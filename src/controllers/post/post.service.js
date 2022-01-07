@@ -15,6 +15,9 @@ const populateOptions = [
       select: "name avatar",
     },
   },
+  {
+    path: "likes",
+  },
 ];
 
 const getPostById = async (postId) => {
