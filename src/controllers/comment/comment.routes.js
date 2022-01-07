@@ -11,7 +11,7 @@ const commentRouter = express.Router({ mergeParams: true });
 // Top level middlewares
 commentRouter.use(authMiddleware, permit("all"));
 
-// [GET] /api/comments/:commentId
+// [GET] /api/posts/:postId/comments/:commentId
 commentRouter.get(
   "/:commentId",
   asyncHandler(async (req, res) => {
@@ -23,7 +23,7 @@ commentRouter.get(
   })
 );
 
-// [GET] /api/comments
+// [GET] /api/posts/:postId/comments
 commentRouter.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -36,7 +36,7 @@ commentRouter.get(
   })
 );
 
-// [POST] /api/comments
+// [POST] /api/posts/:postId/comments
 commentRouter.post(
   "/",
   asyncHandler(async (req, res) => {
@@ -49,7 +49,7 @@ commentRouter.post(
   })
 );
 
-// [PUT] /api/comments/:commentId
+// [PUT] /api/posts/:postId/comments/:commentId
 commentRouter.put(
   "/:commentId",
   asyncHandler(async (req, res) => {
@@ -62,7 +62,7 @@ commentRouter.put(
   })
 );
 
-// [DELETE] /api/comments/:commentId
+// [DELETE] /api/posts/:postId/comments/:commentId
 commentRouter.delete(
   "/:commentId",
   asyncHandler(async (req, res) => {
