@@ -26,15 +26,17 @@ const loginWithGoogle = async (tokenId) => {
   });
 
   const { name, email, picture: avatar } = ticket.getPayload();
+  const studentId = email.split("@")[0];
   const studentExisted = await User.findOne({ email });
 
   let authToken;
   if (!studentExisted) {
     const student = new User({
+      username: studentId,
       name,
       email,
       avatar,
-      studentId: email.split("@")[0],
+      studentId,
       role: "student",
     });
     await student.save();
