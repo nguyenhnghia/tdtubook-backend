@@ -10,7 +10,7 @@ const notificationRouter = express.Router();
 const notificationFields = ["title", "content", "department", "category"];
 
 // Top level middlewares
-notificationRouter.use(authMiddleware, permit("admin", "department"));
+notificationRouter.use(authMiddleware, permit("all"));
 
 // [GET] /api/notifications/:notificationId
 notificationRouter.get(
