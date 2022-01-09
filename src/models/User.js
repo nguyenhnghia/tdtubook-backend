@@ -26,8 +26,7 @@ const userSchema = mongoose.Schema(
     ],
     avatar: {
       type: String,
-      default:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png",
+      default: "http://dvdn247.net/wp-content/uploads/2020/07/avatar-mac-dinh-1.png",
     },
     email: {
       type: String,
