@@ -37,7 +37,7 @@ const queryNotifications = async (query, options) => {
 };
 
 const checkCategoryPermission = (notiCategory, userCategories) => {
-  const isAllowed = userCategories.some((category) => category.toString() === notiCategory);
+  const isAllowed = userCategories.some((category) => category._id.toString() === notiCategory);
   return isAllowed;
 };
 
