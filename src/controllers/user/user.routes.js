@@ -14,7 +14,7 @@ userRouter.use(authMiddleware);
 // [GET] /api/users/:userId
 userRouter.get(
   "/:userId",
-  permit("admin"),
+  permit("all"),
   asyncHandler(async (req, res) => {
     const { userId } = req.params;
 
@@ -57,7 +57,14 @@ userRouter.put(
   permit("admin", "owner"),
   asyncHandler(async (req, res) => {
     const { userId } = req.params;
-    const updateBody = pick(req.body, ["name", "username", "role", "categories"]);
+    const updateBody = pick(req.body, [
+      "name",
+      "username",
+      "role",
+      "categories",
+      "studentFaculty",
+      "studentClass",
+    ]);
 
     const user = await userService.updateUser(userId, updateBody);
 

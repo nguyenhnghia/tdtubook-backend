@@ -9,7 +9,7 @@ const pick = require("../../utils/pick");
 const categoryRouter = express.Router();
 
 // Top level middlewares
-categoryRouter.use(authMiddleware, permit("admin"));
+categoryRouter.use(authMiddleware, permit("all"));
 
 // [GET] /api/categories/:categoryId
 categoryRouter.get(
