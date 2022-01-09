@@ -40,7 +40,7 @@ authRouter.get(
   "/load",
   authMiddleware,
   asyncHandler(async (req, res) => {
-    const user = pick(req.user.toObject(), ["_id", "name", "avatar", "email", "role"]);
+    const user = pick(req.user.toObject(), ["_id", "name", "avatar", "categories", "role"]);
 
     res.status(200).json({ status: "success", user });
   })

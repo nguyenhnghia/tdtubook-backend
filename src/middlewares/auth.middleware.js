@@ -18,7 +18,12 @@ const auth = async (req, res, next) => {
     req.decoded = decoded;
 
     // Verify User with _id and token
-    const user = await User.findOne({ _id: decoded._id, token });
+    const user = await User.findOne({ _id: decoded._id, token }).populate([
+      {
+        path: "categories",
+        select: "name tag",
+      },
+    ]);
     if (!user) throw new ApiError(401, "Login failed");
     req.user = user;
 
