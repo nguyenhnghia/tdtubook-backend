@@ -62,6 +62,7 @@ userRouter.put(
       "username",
       "role",
       "categories",
+      "avatar",
       "studentFaculty",
       "studentClass",
     ]);
