@@ -35,6 +35,11 @@ const getCategoryFromName = async (categoryName) => {
   return category;
 };
 
+const getCategoryFromTag = async (categoryTag) => {
+  const category = await Category.findOne({ tag: categoryTag });
+  return category;
+};
+
 module.exports = {
   getCategoryById,
   queryCategories,
@@ -42,4 +47,5 @@ module.exports = {
   updateCategory,
   deleteCategory,
   getCategoryFromName,
+  getCategoryFromTag,
 };

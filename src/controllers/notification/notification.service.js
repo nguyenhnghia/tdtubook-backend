@@ -26,9 +26,9 @@ const queryNotifications = async (query, options) => {
 
   const paginateQuery = query;
   // Allow using category name for query
-  const { category: categoryName } = query;
-  if (categoryName && !isValidId(categoryName)) {
-    const category = await categoryService.getCategoryFromName(categoryName);
+  const { category: categoryTag } = query;
+  if (categoryTag && !isValidId(categoryTag)) {
+    const category = await categoryService.getCategoryFromTag(categoryTag);
     paginateQuery.category = category._id;
   }
 
