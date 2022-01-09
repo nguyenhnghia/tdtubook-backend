@@ -6,7 +6,7 @@ const pick = require("../../utils/pick");
 const populateOptions = [
   {
     path: "user",
-    select: "name avatar",
+    select: "name avatar role",
   },
   {
     path: "comments",
