@@ -12,6 +12,11 @@ const init = (server) => {
     socket.on("post:create", (post) => {
       socket.broadcast.emit("post:create", post);
     });
+
+    // User create a new notification
+    socket.on("notification:create", (notification) => {
+      socket.nsp.emit("notification:create", notification);
+    });
   });
 };
 
